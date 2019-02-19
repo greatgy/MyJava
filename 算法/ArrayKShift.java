@@ -11,20 +11,22 @@ public class ArryKShift {
 	}
 	
 	public static void arrayKShift(int[] arrays, int k){
+		//整体反转
 		for(int i = 0;i< arrays.length/2;i++){
 			int temp = arrays[i];
 			arrays[i] = arrays[arrays.length-1-i];
 			arrays[arrays.length-1-i] = temp;
 		}
 		
+		//前k位反转
 		for(int i = 0;i< k/2;i++){
 			int temp = arrays[i];
 			arrays[i] = arrays[k-1-i];
 			arrays[k-1-i] = temp;
 		}
 		
-		int length = arrays.length - k;
-		for(int i = k;i< k + length/2;i++){
+		//length-k位反转
+		for(int i = k;i< k + (arrays.length - k)/2;i++){
 			int temp = arrays[i];
 			arrays[i] = arrays[arrays.length-1-i + k];
 			arrays[arrays.length-1-i + k] = temp;
