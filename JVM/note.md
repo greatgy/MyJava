@@ -21,7 +21,7 @@ eden、from survivor、to survivor   8:1:1
 
 
 
-对象在eden区出生，没经过一次MinorGC并存活下来年龄增加
+对象在eden区出生，每经过一次MinorGC并存活下来年龄增加
 
 
 内存分配与回收策略：
