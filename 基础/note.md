@@ -21,3 +21,7 @@ public <T extends Number> T showKeyName(Generic<T> container){//泛型方法
 public class Generic<T extends Number>{//泛型类
 
 switch 表达式的值必须是整型 byte shot char都可以隐式的转为int,String使用hashcode转为int值，枚举类型
+
+
+#### 一致性hash算法：
+	将所有哈希值分布到一个圆环上范围是0~2^32-1，将节点hash后分布到换上，当节点比较少时多次hash生成多个节点成为虚拟节点，数据hash分布到环上按照顺时针方向定位到节点
