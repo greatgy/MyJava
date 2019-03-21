@@ -3,15 +3,16 @@ public class Sort {
 
 	public static void main(String[] args) {
 		//bubble_sort();
-		quick_sort(0, nums.length - 1);
+		//quick_sort(0, nums.length - 1);
 		//select_sort();
+		insert_sort();
 		for (int i = 0; i < nums.length; i++) {
 			System.out.println(nums[i]);
 		}
 	}
 
 	// 冒泡排序
-	private static void bubble_sort() {
+	private static void bubble_sort() { //O(n^2) 稳定
 		for (int i = 0; i < nums.length - 1; i++) { // i表示需要比较几趟
 			for (int j = 0; j < nums.length - 1 - i; j++) { // j表示每趟比较次数s
 				if (nums[j] < nums[j + 1]) {
@@ -24,7 +25,7 @@ public class Sort {
 	}
 
 	// 快速排序
-	private static void quick_sort(int left, int ritht) {
+	private static void quick_sort(int left, int ritht) { //O(n*logn)  不稳定
 		int i, j, temp, t;
 		if (left > ritht) {
 			return;
@@ -53,7 +54,7 @@ public class Sort {
 	
 	//选择排序
 	private static void select_sort(){ //遍历右侧所有找到最大的和当前的交换
-		int max;
+		int max;                       //O(n^2) 不稳定 快于冒泡
 		int temp;
 		for (int i = 0; i < nums.length; i++) {
 			max = i;
@@ -67,4 +68,22 @@ public class Sort {
 			nums[max] = temp ;
 		}
 	}
+	
+	
+	//插入排序
+	private static void insert_sort(){ //O(n^2) 稳定 快于选择和冒泡
+		int temp = 0;
+		for (int i = 1; i < nums.length; i++) {
+			for(int j=i;j>0;j--){
+				if (nums[j] < nums[j-1]) {
+					temp = nums[j];
+					nums[j] = nums[j-1];
+					nums[j-1] = temp ;
+				} else {
+					break;
+				}
+			}
+		}
+	}
 }
+
