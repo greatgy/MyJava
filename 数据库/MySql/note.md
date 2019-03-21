@@ -14,8 +14,7 @@
 ####mysql优化
 	逻辑代码优化 减少数据库访问   
 	频繁查询的使用redis等缓存 
-	表的字段使用合理的类型 varchar长度合理
-	
+	表的字段使用合理的类型 varchar长度合理	
 	在 where及order by涉及的列上建立索引
 	优化sql避免索引失效
 	避免select * ;
