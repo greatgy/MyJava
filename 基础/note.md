@@ -26,10 +26,3 @@ switch 表达式的值必须是整型 byte shot char都可以隐式的转为int,
 #### 一致性hash算法：
 	将所有哈希值分布到一个圆环上范围是0~2^32-1，将节点hash后分布到换上，当节点比较少时多次hash生成多个节点成为虚拟节点，数据hash分布到环上按照顺时针方向定位到节点
 	
-
-#### NIO
-	BIO是同步阻塞的，NIO是同步非阻塞的，io读写不阻塞
-	BIO是基于流传输, NIO引入了channel buffer,基于buffer传输，只能从channel读取数据到buffer或从buffer写入数据到channel
-	NIO使用单线程处理多个连接，通过selector轮询读写事件
-#### Netty
-	
