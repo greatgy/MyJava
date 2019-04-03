@@ -48,4 +48,6 @@ public class Try_finally {
 		}
 		return count;
 	}
+	// try 和 catch中return后 将操作数栈中的结果复制到局部变量表，然后执行finally中的语句，执行完成后会将局部变量表的那个值压入操作数栈顶作为返回值
+	// 当finally中使用return 则返回的是finally中的值，而不是之前复制的了
 }
