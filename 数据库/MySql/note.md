@@ -24,3 +24,13 @@
 	避免数据类型不一致
 	索引不会包含有Null值的列
 	模糊查询双%会索引失效
+
+## sql语句
+	
+##### in和exists
+	in 适用于子查询表小，外层表大的情况（select * from A where cc in (select cc from B)）
+	exists 适用于外表小而内表大的情况（select * from A where exists(select cc from B where cc=A.cc)）
+	内外表大小相当是in和exists效率相差不大
+	
+	not in会全表扫描     not exists的子查询会使用到索引
+	not exists效率高于not in
