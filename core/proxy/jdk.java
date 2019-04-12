@@ -34,5 +34,5 @@ public class DynamicProxyTest{
 		IHello hello = (IHello) new DynamicProxy().bind(new Hello());
 		hello.sayHello();
 	}
-	
+	//利用拦截器和反射机制生成一个实现代理接口的类
 }

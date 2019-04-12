@@ -36,4 +36,5 @@ public class cglib {
 		Hello hello = (Hello) new DynamicProxy().bind(new Hello());
 		hello.sayHello();
 	}
+	//对代理对象类的class文件加载进来，通过修改其字节码生成子类来处理 核心是实现MethodInterceptor接口
 }
