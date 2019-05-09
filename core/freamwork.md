@@ -7,6 +7,14 @@
 
 mybatis在处理#{}时，会将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值
 
+MyBatis处理日期时间
+
+	MyBatis处理日期时间有两种的jdbcType  jdbcType=DATE  jdbcType=TIMESTAMP
+	将java.util.Date当做参数传递给Mapper的时候 能够表示MySQL的三种字段类型date datetime timestamp
+	不管MySQL的日期字段类型是date、datetime或者timestamp中的哪一种，MyBatis都能够自动做出类型转换
+	唯一的不同点是指定jdbcType=DATE的时候，MyBatis会自动截取掉时间
+	总之不手动指定参数的jdbcType必然没有问题。
+
 
 ## Spring
 #### spring bean的作用域
