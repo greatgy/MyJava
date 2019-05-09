@@ -7,7 +7,7 @@
 
 mybatis在处理#{}时，会将sql中的#{}替换为?号，调用PreparedStatement的set方法来赋值
 
-MyBatis处理日期时间
+#### MyBatis处理日期时间：
 
 	MyBatis处理日期时间有两种的jdbcType  jdbcType=DATE  jdbcType=TIMESTAMP
 	将java.util.Date当做参数传递给Mapper的时候 能够表示MySQL的三种字段类型date datetime timestamp
