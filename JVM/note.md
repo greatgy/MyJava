@@ -161,10 +161,11 @@ GC Roots对象：
 
 	
 jps 查看java进程 jps -l
+
 jstat 监控jvm gc情况 jstat -gc [pid]
-					jstat -gcnew [pid]
+		    jstat -gcnew [pid]
 
 jmap 查看heap信息 包含内存配置 gc算法 垃圾收集器等 jmap -heap [pid]
-											  jmap -dump [pid]
+					     jmap -dump [pid]
 
 jstack 线程堆栈分析工具 jstack -l [pid]
