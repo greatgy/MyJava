@@ -34,3 +34,13 @@
 	
 	not in会全表扫描     not exists的子查询会使用到索引
 	not exists效率高于not in
+	
+##### explain
+	type值：
+		const:使用唯一索引或者主键等值查询
+		ref:使用二级索引等值查询
+		range:索引范围查询
+		index：索引全表扫描，分组、排序等行为
+		all: 数据全表扫描，效率最低
+		
+		
