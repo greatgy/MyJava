@@ -29,3 +29,11 @@ LinkedList存储元素的结构是双向链表，由存储元素的节点连接�
 	jdk1.8中和hashmap结构相同，通过CAS+Synchronized实现同步，put操作桶位置为空时使用CAS写入，链表或是红黑树则使用Synchronized锁写入数据。
 	1.8中的node对象 value和next都用volatile修饰，保证并发可见性
 	1.7是对每个segement加锁，1.8是对数组中每个元素加锁
+
+
+
+hashmap:数组 链表 红黑树的结构
+get、put请求都是根据key的hash值去定位数组中的位置，数组中是node对象，node对象里面有key、hash、value、next指向下一个节点
+put插入元素后会判断当前集合中的数量和扩容阈值进行比较，达到扩容标准会触发扩容 这个阈值时容量*负载因子得到的值
+扩容时 容量扩充到原来的2倍
+另外 链表的长度达到一定长度为变为红黑树，红黑树中的节点数量少于一定长度时退化为链表 还有就是hashmap线程不安全
