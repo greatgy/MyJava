@@ -137,7 +137,7 @@ GC Roots对象：
 依赖静态类型来定位方法执行版本的分派动作成为静态分派。在重载过程中使用的是静态分派。
 
 
-垃圾收集器
+##### 垃圾收集器
 
 	serial    	parNew   	parallel Scavenge
 	serial old	cms		parallel old
@@ -159,13 +159,13 @@ GC Roots对象：
 	cms中 浮动垃圾：在并发清除过程中，用户进程不断的产生新的垃圾 这部分是标记过程技术后产生的 只能等待下次gc时收集  成为浮动垃圾
 		
 
-	
-jps 查看java进程 jps -l
+##### jdk工具	
+	jps 查看java进程 jps -l
 
-jstat 监控jvm gc情况 jstat -gc [pid]
-		    jstat -gcnew [pid]
+	jstat 监控jvm gc情况 jstat -gc [pid]
+		    	    jstat -gcnew [pid]
 
-jmap 查看heap信息 包含内存配置 gc算法 垃圾收集器等 jmap -heap [pid]
-					     jmap -dump [pid]
+	jmap 查看heap信息 包含内存配置 gc算法 垃圾收集器等 jmap -heap [pid]
+					     	     jmap -dump [pid]
 
-jstack 线程堆栈分析工具 jstack -l [pid]
+	jstack 线程堆栈分析工具 jstack -l [pid]
