@@ -13,4 +13,13 @@
 Synchronized和ReenTrantLock的区别：
 
 	Synchronized可以修饰代码块、实例方法、静态方法，依赖于JVM隐式的加锁，底层通过字节码指令（monitorenter、monitorexit）和同步访问标志来实现
-	ReenTrantLock需要显式的获取释放锁，lock的释放锁通常写在finally中，lock的话还有tryLock()并且可以设置阻塞时间，lock还可以设置为公平锁
+	ReenTrantLock需要显式的获取释放锁，lock的释放锁通常写在finally中，lock的话还有tryLock()并且可以设置阻塞时间，lock还可以设置为公平锁, tryLock方式阻塞可被中断
+	
+
+##### CAS
+
+	四个参数：Object、offset、expectValue、targetValue
+	比较对象的内存偏移量offset位置的值和期望值比较 相同则用目标值赋值 否则返回false
+	aba问题 通过版本号或者时间戳解决
+	并发高时可能自旋时间长 消耗cpu
+	
