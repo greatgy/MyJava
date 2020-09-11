@@ -25,6 +25,7 @@ LinkedList存储元素的结构是双向链表，由存储元素的节点连接�
 
 
 #### CurrentHashMap
-	CurrentHashMap是线程安全的 jdk1.7中使用分段锁技术（每一段相当于一个map），可承受段数的线程并发。j
-	dk1.8中和hashmap结构相同，通过CAS+Synchronized实现同步，put操作桶位置为空时使用CAS写入，链表或是红黑树则使用Synchronized锁写入数据。
+	CurrentHashMap是线程安全的 jdk1.7中使用分段锁技术（每一段相当于一个map），可承受段数的线程并发, 其中segment继承自ReentrantLock
+	jdk1.8中和hashmap结构相同，通过CAS+Synchronized实现同步，put操作桶位置为空时使用CAS写入，链表或是红黑树则使用Synchronized锁写入数据。
 	1.8中的node对象 value和next都用volatile修饰，保证并发可见性
+	1.7是对每个segement加锁，1.8是对数组中每个元素加锁
