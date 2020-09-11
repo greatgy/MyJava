@@ -41,6 +41,8 @@ class常量池：
 	字面量：文本字符串、final修饰的常量、基本数据类型的值
 	符号引用：类和接口的全限定名、字段的名称和修饰符、方法的名称和修饰符
 
+jdk1.8 常量、静态变量都在堆中
+
 jvm参数：
 
 	-verbose:gc -Xms20M -Xmx20M -Xmn10M -XX:+PrintGCDetails -XX:SurvivorRatio=8 
