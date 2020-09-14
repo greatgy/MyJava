@@ -25,7 +25,8 @@
 	BIO是基于流传输, NIO引入了channel buffer,基于buffer传输，只能从channel读取数据到buffer或从buffer写入数据到channel
 	NIO使用单线程处理多个连接，通过selector轮询读写事件
 	
-	NIO使用IO多路复用模型，本质是调用select/poll/epoll等函数监听多个socket对象
+	NIO使用IO多路复用模型，本质是调用select/poll/epoll等函数监听多个socket对象，当socket对象有数据时通知用户进程 
+	select、poll都是轮询监听socket， 监听的socket有数量限制1024个，poll没有限制  epoll不是轮询，而是socket有数据时通过回调的方式主动通知用户进程
 	优势在于能够处理多个连接而不是单个连接处理得更快
 	
 	
