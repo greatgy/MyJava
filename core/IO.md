@@ -29,7 +29,10 @@
 	select、poll都是轮询监听socket， 监听的socket有数量限制1024个，poll没有限制  epoll不是轮询，而是socket有数据时通过回调的方式主动通知用户进程
 	优势在于能够处理多个连接而不是单个连接处理得更快
 	
-	NIO中的零拷贝：
+	NIO中的零拷贝：MappedByteBuffer和transferTo()、transferFrom()两种方式
+	MappedByteBuffer是通过mmap方式实现的
+	transferTo、transferFrom通过sendfile方式实现
+	区别是是否要对数据进行操作 还是仅仅数据传输
 	
 	
 	阻塞IO 和 非阻塞IO 这两个概念是程序级别的。主要描述的是程序请求操作系统IO操作后，如果IO资源没有准备好，那么程序该如何处理的问题：前者等待；后者继续执行（并且使用线程一直轮询，直到有IO资源准备好了）
