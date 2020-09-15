@@ -1,19 +1,34 @@
-##### 三次握手
-
-![avatar](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600159568855&di=e5bfdf7c6c79a780d1ebc491f8abef61&imgtype=0&src=http%3A%2F%2Fpics6.baidu.com%2Ffeed%2F9d82d158ccbf6c819624f31141341c3332fa40cd.jpeg%3Ftoken%3D9dca9d2f40a953f4b671e80c2cad7dc4)
+#### tcp
 
     seq：序号，tcp数据段数据部分第一个字节的编号(例如，一个数据段的“序号”字段值是101，数字段中共有100字节，表明本数据段的最后一个字节的编号是200。这样一来，下一个数据段的“序号”字段值应该是201)
     ack：确认号，表示期望接受到对方发送的下一个数据段的第一个字节编号
-    
+
     SYN：同步控制位，为1时表示连接请求或连接确认
     ACK：确认控制位，表示数据段中的确认号是否有效
     FIN：用于释放一个连接
     窗口大小：发送端和接受端都有两个窗口，表示允许对方发送的字节数
-    
+
+    可靠性传输：数据段字节编号机制，确认数据段机制，超时重传机制，选择重传机制
+
+
+
+##### 三次握手
+
+![avatar](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600159568855&di=e5bfdf7c6c79a780d1ebc491f8abef61&imgtype=0&src=http%3A%2F%2Fpics6.baidu.com%2Ffeed%2F9d82d158ccbf6c819624f31141341c3332fa40cd.jpeg%3Ftoken%3D9dca9d2f40a953f4b671e80c2cad7dc4)
+
     握手过程：客户端向服务器发送一个同步控制为SYN为1的数据段（假设此时序号值为i）
     				服务器收到数据段后返回一个SYN和ACK都为1的数据段，并且确认号为i+1,(假设此时序号值为j)
     				客户端收到SYN+ACK数据后，向服务器发送一个ACK等于1、seq等于i+1，ack确认号等于j+1的数据段
     				服务器收到ACK数据后 完成双向连接
 
    
+
+#### 四次挥手
+
+​	![avatar](https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1600162908192&di=a3a663bd98b28245e352a00e5716fadf&imgtype=0&src=http%3A%2F%2Fimg2.imgtn.bdimg.com%2Fit%2Fu%3D499191382%2C45179366%26fm%3D214%26gp%3D0.jpg)
+
+    客户端向服务器发送一个FIN字段置为1的数据段(假设数据段序号为m)
+    服务器收到FIN数据段后，确认客户端没有新的数据发送了，向客户端发送一个ACK为1，ack为m+1的数据段，此时服务器仍然可以向客户端发送数据
+    服务器向客服端发送完全部数据后，会向客服端发送一个FIN+ACK数据段，确认号为m+1
+    客户端收到FIN+ACK数据段后，向服务器发送ACK数据段，seq为m+1. 此时tcp连接还未断开等待一段时间后才释放 
 
