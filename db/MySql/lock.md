@@ -12,6 +12,13 @@ redo日志
     事务提交后需要刷新数据到磁盘，但是磁盘随机写性能低，每次都刷盘影响吞吐量
 		优化是将修改行为记录到redo日志中，再定期刷入磁盘(变为磁盘顺序写),数据库崩溃重启后会重做redo日志，保证事务对数据的影响刷到磁盘
 		redo日志保障已提交事务的ACID特性
+		
+	每次写入logbuffer，write系统调用后写入os Cache，fsync后刷入磁盘
+	每秒write一次OS cache，同时fsync刷磁盘，性能好；
+	每次都write入OS cache，同时fsync刷磁盘，一致性好；
+	每次都write入OS cache，每秒fsync刷磁盘，折衷；（推荐）
+
+
 
 undo日志
 		
