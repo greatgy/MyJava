@@ -169,5 +169,6 @@ GC Roots对象：
 
 	jmap 查看heap信息 包含内存配置 gc算法 垃圾收集器等 jmap -heap [pid]
 					     	     jmap -dump [pid]
+						     jmap -histo:live [pid]查看存活的对象并按照占用内存排序
 
 	jstack 线程堆栈分析工具 jstack -l [pid]
