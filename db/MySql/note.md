@@ -27,9 +27,10 @@ innodb存储引擎默认的隔离级别是Repeated Read
 	负向查询不会命中索引
         列上有计算不会命中索引
 	前导模糊查询不会命中索引
-	1强制类型转化不会命中索引
-	s索引列not null，索引列不会存null值 当is not null时不会包含null值行
+	强制类型转化不会命中索引
+	索引列not null，索引列不会存null值 当is not null时不会包含null值行
 	避免select * ，减少传输量
+	可以使用连接代替子查询，避免在内存中产生临时表
 
 ## sql语句
 	
