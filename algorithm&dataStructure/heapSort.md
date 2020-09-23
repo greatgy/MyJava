@@ -6,15 +6,43 @@
     public class Test {
         public static void main(String[] args) {
             int[] arr = {3,5,9,2,7,4};
-            heapSort(arr);
+            //heapSort(arr);
+            //Arrays.stream(arr).forEach(System.out::println);
+            topN(arr, 2);
+            headSort(arr);
+        }
+
+        private static void headSort(int[] arr) {
+            //两个步骤1、建堆 2、大顶推或小顶堆排序为数组
+            buildheap(arr, arr.length - 1);
+            heapToArr(arr, arr.length - 1);
             Arrays.stream(arr).forEach(System.out::println);
         }
 
-        private static void heapSort(int[] a){
-            int k = a.length - 1;
-            //两个步骤1、建堆 2、排序
-            buildheap(a, k);
+        private static void topN(int[] arr, int k) {
+            //求前K个最大的数，构造小顶堆， K个最小的数，构造大顶堆
+            buildheap(arr, k-1);
 
+            //前k个元素以后的元素和堆顶元素比较、交换、堆化
+            for (int i = k; i< arr.length;i++) {
+                if (arr[i] < arr[0]) {
+                    swap(arr, 0, i);
+                    heapify(arr, 0, k - 1);
+                }
+            }
+
+            heapToArr(arr, k-1);
+
+            for (int i=0;i<k;i++) {
+                System.out.println(arr[i]);
+            }
+        }
+
+        //堆结构排序为数组
+        private static void heapToArr(int[] a, int k){
+            //最后一个元素和首元素交换，最后一个元素为最大或者最小
+            //最后一个元素以前的进行堆化
+            //一直到首元素为止
             while (k>0) {
                 swap(a, 0, k);
                 k--;
