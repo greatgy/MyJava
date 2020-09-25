@@ -17,6 +17,21 @@ redo日志
 	每秒write一次OS cache，同时fsync刷磁盘，性能好；
 	每次都write入OS cache，同时fsync刷磁盘，一致性好；
 	每次都write入OS cache，每秒fsync刷磁盘，折衷；（推荐）
+	
+	
+redo
+
+		记录物理数据变化
+		循环使用文件内容会被覆盖
+		保证事务的持久性
+		事务开始时写入，状态为prepare，binlog写入完成事务提交变为comit，崩溃恢复时只恢复commit状态数据
+
+binlog
+
+		记录逻辑变化
+		文件追加的形式
+		用户主从复制、ES和mysql同步
+		事务提交时写入
 
 
 
