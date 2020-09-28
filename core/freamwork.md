@@ -31,4 +31,5 @@ IOC:对象获得依赖对象的过程由new创建变为有spring注入，由主�
 #### spring 循环依赖问题
 	通过引入一个map缓存，用来保存创建了对象实例，但是没有初始化属性的对象
 	创建A对象时发现依赖B对象，通过getBean获取B对象，发现B对象为null，创建B对象同时发现依赖A对象 getBean查找为null 会去缓存map中查找 找到A对象的实例
+	不用构造器注入用setter注入
 ## SpringMVC
