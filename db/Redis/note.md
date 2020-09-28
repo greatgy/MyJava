@@ -47,5 +47,3 @@ AOF方式
 	延迟双删法：先删缓存 再改数据库 等待1秒再删一次 （等待是为了可能的并发read请求完成，写入脏数据）
 	binlog同步法：通过cannal、kafka、rabbitmq等方式同步binlog到redis
 
-RDB持久化方式双
-RDB持久化方式
