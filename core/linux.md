@@ -10,8 +10,13 @@
     
     
     awk -F '分隔符' ‘print $1,$2’ x.log | sort -k 3   
+    awk -F '{if($5=="1") {print $2}}'| sort | uniq -c | sort -r （去重是针对相邻的行，先排序再去重）
+    
     sort -k指定按照某列排序
          -r降序
          -u去重
+    uniq: -c重复的数量
+          -u出现一次的
+          -d出现多次的
     
     
