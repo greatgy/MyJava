@@ -24,33 +24,53 @@ public class Sort {
 		}
 	}
 
+	// topN
+	    public static int topN(int[] nums, int left, int right, int n) {
+
+		int p = partition(nums, left, right);
+
+		if (p == n) {
+		    return nums[p];
+		} else if (p > n) {
+		    return topN(nums, left, p - 1, n);
+		} else {
+		    return topN(nums, p + 1, right, n);
+		}
+	    }
+
 	// 快速排序
-	private static void quick_sort(int left, int ritht) { //O(n*logn)  不稳定
-		int i, j, temp, t;
-		if (left > ritht) {
-			return;
+	    public static void quick_sort(int[] nums, int left, int right) {
+		if (left >= right) {
+		    return;
 		}
-		temp = nums[left]; //以第一个数为基准点，j在右侧逐个判断对应值是否大于基准数，i在左侧逐个判断对应值是否小于等于基准数，i小于j时找到不符合的后i和j的对应值交换，继续查找
-		i = left;          //直到i=j 此时交换当前值与基准数，完成第一次查找，当前数可以确定了左侧都比当前值小，右侧都比当前值大， 左右两侧数据分别重复上述操作
-		j = ritht;
-		while (i != j) {
-			while (nums[j] > temp && i < j) {  //基准数选在左边则从右侧开始  因为要保证相遇数小于基准数
-				j--;							//基准数选在右边则从左侧开始  因为要保证相遇数大于基准数
-			}
-			while (nums[i] <= temp && i < j) {
-				i++;
-			}
-			if (i < j) {
-				t = nums[i];
-				nums[i] = nums[j];
-				nums[j] = t;
-			}
+
+		int p = partition(nums, left, right);
+
+		sort(nums, left, p - 1);
+		sort(nums, p + 1, right);
+	    }
+
+	    public static int partition(int[] nums, int left, int right) {
+		int p = right;
+		int i = left;
+		for (int j=left; j<right; j++){
+		    if (nums[j] > nums[p]) {
+			swap(nums, i, j);
+			i++;
+		    }
 		}
-		nums[left] = nums[i];
-		nums[i] = temp;
-		quick_sort(left, i - 1);  //递归排序左侧的数据
-		quick_sort(i + 1, ritht); //递归排序右侧的数据
-	}
+		swap(nums, i, p);
+		return i;
+	    }
+
+	    public static void swap(int[] nums, int left, int right) {
+		if (left == right) {
+		    return;
+		}
+		int tmp = nums[left];
+		nums[left] = nums[right];
+		nums[right] = tmp;
+	    }
 	
 	//选择排序
 	private static void select_sort(){ //遍历右侧所有找到最大的和当前的交换
