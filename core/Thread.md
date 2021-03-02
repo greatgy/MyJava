@@ -13,6 +13,7 @@
 Synchronized和ReenTrantLock的区别：
 
 	Synchronized可以修饰代码块、实例方法、静态方法，依赖于JVM隐式的加锁，底层通过字节码指令（monitorenter、monitorexit）和同步访问标志来实现
+	Synchronized的重量级锁是通过对象内部的一个叫做监视器锁（monitor）来实现的，监视器锁本质又是依赖于底层的操作系统的Mutex Lock（互斥锁）来实现的。而操作系统实现线程之间的切换需要从用户态转换到核心态，这个成本非常高，状态之间的转换需要相对比较长的时间，这就是为什么Synchronized效率低的原因
 	ReenTrantLock需要显式的获取释放锁，lock的释放锁通常写在finally中，lock的话还有tryLock()并且可以设置阻塞时间，lock还可以设置为公平锁, tryLock方式阻塞可被中断 通过aqs的state
 	
 
