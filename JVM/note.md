@@ -162,13 +162,13 @@ GC Roots对象：
 		
 
 ##### jdk工具	
-	jps 查看java进程 jps -l
+	jps 查看java进程 jps -v 显示虚拟机启动时jvm参数
 
-	jstat 监控jvm gc情况 jstat -gc [pid]
+	jstat 虚拟机运行状态信息 jstat -gc [pid]
 		    	    jstat -gcnew [pid]
 
-	jmap 查看heap信息 包含内存配置 gc算法 垃圾收集器等 jmap -heap [pid]
+	jmap 查看heap信息 包含内存配置 gc算法 垃圾收集器 生成堆转储快照等 jmap -heap [pid]
 					     	     jmap -dump [pid]
 						     jmap -histo:live [pid]查看存活的对象并按照占用内存排序
 
-	jstack 线程堆栈分析工具 jstack -l [pid]
+	jstack 生成虚拟机当前时刻的线程快照 jstack -l [pid]
