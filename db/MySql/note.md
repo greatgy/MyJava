@@ -57,10 +57,10 @@ innodb存储引擎默认的隔离级别是Repeated Read
 		记录表的行数，无条件count(*)时直接返回，有条件时和innodb引擎一样需要按行扫描
 
 #### 事务属性
-	A(atomic):原子性  事务内的一组操作要么全部成功，要么全部失败
+	A(atomic):原子性  事务内的一组操作要么全部成功，要么全部失败  （通过undo.log实现）
 	C(consistency):一致性 数据库总是从一个一致性状态到另一个一致性状态
-	I(isolation):隔离性 一个事务的修改在最终提交前对其他事务是不可见的
-	D(duration):持久性  事务提交对数据的改变持久性的
+	I(isolation):隔离性 一个事务的修改在最终提交前对其他事务是不可见的 （通过mvvc实现）
+	D(duration):持久性  事务提交对数据的改变持久性的（通过redo.log实现, 对数据的修改会记录在redo.log 事务提交的时候通过redo.log刷盘，宕机可以从redo.log恢复）
 	s 通过undo日志保证原子性，redo日志保证持久性，可重复读的隔离级别保证隔离性和数据一致性
 	索引列not null，索引列不会存null值 当is not null时不会包含null值行
 	索引列not null，索引列不会存null值 当is not null时不会包含null值行
