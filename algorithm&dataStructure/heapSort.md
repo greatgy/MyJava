@@ -71,7 +71,7 @@
                     break;
                 }
                 swap(arr, i, max);
-                i = (i-1)/2;
+                i = max;
             }
         }
 
