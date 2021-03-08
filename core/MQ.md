@@ -38,8 +38,8 @@
 
 ###### kafka为什么这么快？
 
-- 磁盘顺序写：kafka分区消息有序，新的消息追加到partition末尾
-- partition并行处理：集群下不同partition可以在不同机器下，实现partition并行处理
-- 数据写入broker时写入page Cache由系统控制刷盘
-- producer发送数据到broker时，通过Memory map实现快速写入
-- consumer从broker读取数据时，通过senfile 从磁盘读取数据到内核缓冲区，发送到网卡	
+    - 磁盘顺序写：kafka分区消息有序，新的消息追加到partition末尾
+    - partition并行处理：集群下不同partition可以在不同机器下，实现partition并行处理
+    - 数据写入broker时写入page Cache由系统控制刷盘
+    - producer发送数据到broker时，通过Memory map实现快速写入
+    - consumer从broker读取数据时，通过senfile 从磁盘读取数据到内核缓冲区，发送到网卡	
