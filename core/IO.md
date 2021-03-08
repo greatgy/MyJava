@@ -25,9 +25,17 @@
 	BIO是基于流传输, NIO引入了channel buffer,基于buffer传输，只能从channel读取数据到buffer或从buffer写入数据到channel
 	NIO使用单线程处理多个连接，通过selector轮询读写事件
 	
-	NIO使用IO多路复用模型，本质是调用select/poll/epoll等函数监听多个socket对象，当socket对象有数据时通知用户进程 
+	NIO使用IO多路复用
 	select、poll都是轮询监听socket， 监听的socket有数量限制1024个，poll没有限制  epoll不是轮询，而是socket有数据时通过回调的方式主动通知用户进程
 	优势在于能够处理多个连接而不是单个连接处理得更快
+	
+
+		当用户进程发起read系统调用时，如果内核缓冲区数据没有准备好，不会阻塞直接返回error信息，表现为非阻塞io，nio可以用一个线程处理多个连接，每次遍历socket数组判断是否可读 
+		缺点是每次都要遍历所有连接，发出很多次系统调用 用户态内核态频繁切换
+		由此产生了IO多路复用，java NIO中通过epoll方法实现 epoll返回就绪的连接fds
+
+		select、poll 每次需要将fds拷贝到内核态 select有连接限制
+		epoll内核态有一块内存存储fds,连接就绪会加入就绪列表，epoll返回就绪的连接fds，不用拷贝fds到内核态
 	
 	NIO中的零拷贝：MappedByteBuffer和transferTo()、transferFrom()两种方式
 	MappedByteBuffer是通过mmap方式实现的
