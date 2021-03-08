@@ -43,3 +43,14 @@
     - 数据写入broker时写入page Cache由系统控制刷盘
     - producer发送数据到broker时，通过Memory map实现快速写入
     - consumer从broker读取数据时，通过senfile 从磁盘读取数据到内核缓冲区，发送到网卡	
+
+###### 保证消息不丢失
+
+    - ack设置为-1 消息写入leader并同步给其他副本后返回写入成功响应
+    - producer数据持久化到broker时 消息是写入到page cache的 可以更改配置为每次写入刷到磁盘
+    - 消费者关闭自动提交 改为手动提交
+
+###### 消息重复
+
+    - 生产者消息重试导致的重复：启用kafka的幂等性设置（服务端会记录每个producer对应的当前最大sequence，producerId + sequence ，如果新的消息带上的sequence不大于当前的最大sequence就拒绝这条消息）
+    - 消费者实现逻辑幂等
