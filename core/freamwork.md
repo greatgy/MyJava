@@ -28,8 +28,35 @@ $是字符串替换，#为预编译 mybatis在处理#{}时，会将sql中的#{}�
 IOC:对象获得依赖对象的过程由new创建变为有spring注入，由主动行为变成被动行为，控制权颠倒了，就是控制反转的由来
 依赖注入: setter注入和构造器注入
 
-#### spring 循环依赖问题
-	通过引入一个map缓存，用来保存创建了对象实例，但是没有初始化属性的对象
-	创建A对象时发现依赖B对象，通过getBean获取B对象，发现B对象为null，创建B对象同时发现依赖A对象 getBean查找为null 会去缓存map中查找 找到A对象的实例
-	不用构造器注入用setter注入
+
+
+##### spring生命周期
+
+	- 实例化，创建bean对象
+
+	- 设置对象属性
+
+	- 初始化：如果实现了aware接口 通过aware接口拿到spring容器资源
+
+	  	如果实现了beanPostProcessor 回调postProcessBeforeInitialzation和postProcesseAfterInitialzation 方法
+
+	  ​     如果配置了init-method 执行init-method配置的方法
+
+	- 销毁：如果配置了destory-method 会执行destory-method方法
+
+##### 循环依赖
+
+	通过三级缓存拿到未初始化的对象，前提是两个对象不都是用构造器注入
+
+	一级缓存保存实例化并初始化过的对象
+
+	二级缓存保存实例化 没有初始化过的对象
+
+	三级缓存 对象实例化之后加入三级缓存
+
+	流程：A对象实例化之后加入三级缓存 设置属性发现需要依赖B对象，从一到三级缓存依次查询B对象
+
+	未查到B对象，实例化发现依赖A对象 从三级缓存中查询到A 把A移动到二级缓存，B移动到一级缓存，接着创建A对象 从一级缓存中拿到B对象完成创建 A移动到一级缓存
+
+
 ## SpringMVC
